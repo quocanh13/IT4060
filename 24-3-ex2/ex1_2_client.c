@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-// gcc client.c -o client && ./client
+// gcc ex1_2_client.c -o ex1_2_client && ./ex1_2_client
 
 int main() {
     char *client_ip = "127.0.0.1";
@@ -26,8 +26,23 @@ int main() {
     server_addr.sin_port = htons(server_port);
     inet_pton(AF_INET, server_ip, &server_addr.sin_addr); 
 
-    int client = socket(AF_INET, SOCK_DGRAM, 0);
+    int client = socket(AF_INET, SOCK_STREAM, 0);
     bind(client, (struct sockaddr*)&client_addr, sizeof(client_addr));
-    char *buffer = "Hello";
-    sendto(client, buffer, sizeof(buffer), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
+
+    if(connect(client, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
+        printf("Failed to connect to server\n");
+    } else {
+        printf("Connected to server\n");
+        char messsage[4][100] = {
+            "SOICTSOICT012345678901234567890123456789012345",
+            "6789SOICTSOICTSOICT012345678901234567890123456",
+            "7890123456789012345678901234567890123456789012",
+            "3456789SOICTSOICT01234567890123456789012345678"
+        };
+        for(int i = 0; i < 4; i++){
+            send(client, messsage[i], strlen(messsage[i]), 0);
+        } 
+        close(client);
+    }
+    
 }

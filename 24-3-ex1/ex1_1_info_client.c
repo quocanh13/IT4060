@@ -9,7 +9,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
-// gcc info_client.c -o info_client && ./info_client
+// gcc ex1_1_info_client.c -o ex1_1_info_client && ./ex1_1_info_client
 int main() {
 
     char* server_ip = "127.0.0.1";

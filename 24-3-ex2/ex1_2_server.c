@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-// gcc server.c -o server && ./server
+// gcc ex1_2_server.c -o ex1_2_server && ./ex1_2_server
 
 int main() {
     char *server_ip = "127.0.0.1";
@@ -40,14 +40,17 @@ int main() {
                 strcat(message, temp);
                 strcat(message, buffer);
             }
-            printf("%s\n", message);
+            // printf("%s\n", message);
             int count = 0;
-            for(int i = 0; i < message_len; i++) {
-                if(message[i] - 48 == 1) {
+            for(int i = 0; i <= message_len - 10; i++) {
+                if(message[i] - 48 == 0) {
                     int check = 0;
-                    for(int j = 2; j <= 9; j++) {
-                        if(message[i + j - 1] - 48 == j) {
-                            if(j == 9) count++;
+                    for(int j = 1; j <= 9; j++) {
+                        if(message[i + j] - 48 == j) {
+                            if(j == 9) {
+                                count++;
+                                i += 9;
+                            }
                         } else {
                             i += j - 1;
                             check = 1;
