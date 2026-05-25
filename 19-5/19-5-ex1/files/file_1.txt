@@ -1,0 +1,1 @@
+Khi client mới được chấp nhận, server sẽ gửi danh sách các file cho client. Các file này trong thư mục được thiết lập trên server. Dòng đầu danh sách là chuỗi “OK N\r\n” nếu có N file trong thư mục. Các tên file phân cách nhau bởi ký tự \r\n, kết thúc danh sách bởi ký tự\r\n\r\n.

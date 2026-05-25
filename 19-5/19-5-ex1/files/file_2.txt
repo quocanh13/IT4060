@@ -1,0 +1,1 @@
+Nếu không có file nào trong thư mục thì server gửi chuỗi “ERRORNofilestodownload\r\n” rồiđóngkếtnối.
